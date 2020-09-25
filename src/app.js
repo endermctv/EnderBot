@@ -1,16 +1,10 @@
 require('dotenv').config()
+require('./server')
 const { Client, MessageEmbed } = require('discord.js')
 const express = require('express')
 const { prefix } = require('./config')
 
 const client = new Client()
-const app = express()
-const PORT = process.env.PORT || 3001;
-
-app.listen(PORT, () => console.log(`Le serveur est démarré sur le port ${PORT}.`))
-app.get('/', (req, res) => {
-    res.sendFile(`${__dirname}/views/index.html`)
-})
 
 client.on('ready', () => {
     console.log(`Statut : prêt.\nConnecté en tant que ${client.user.tag}.`)
@@ -20,6 +14,13 @@ client.on('ready', () => {
 client.on('message', async message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/g)
     const cmd = args.shift().toLowerCase()
+
+    //client.channels.cache.find(ch => ch.id === '749959090054365254').send('test')
+
+    if(cmd === 'say'){
+        message.channel.send(args.join(""))
+        await message.delete()
+    }
 
     if(cmd === 'dashboard'){
         if(!message.member.hasPermission('ADMINISTRATOR')) message.channel.send('test');
