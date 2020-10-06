@@ -15,10 +15,8 @@ client.on('message', async message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/g)
     const cmd = args.shift().toLowerCase()
 
-    //client.channels.cache.find(ch => ch.id === '749959090054365254').send('test')
-
     if(cmd === 'say'){
-        message.channel.send(args.join(""))
+        message.channel.send(args.join(''))
         await message.delete()
     }
 
