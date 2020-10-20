@@ -1,14 +1,16 @@
 require('dotenv').config()
-require('./server')
-const { Client, MessageEmbed } = require('discord.js')
-const express = require('express')
-const { prefix } = require('./config')
+import './server'
+import './config'
+import {
+    Client,
+    MessageEmbed
+} from 'discord.js'
 
 const client = new Client()
 
 client.on('ready', () => {
-    console.log(`Statut : prêt.\nConnecté en tant que ${client.user.tag}.`)
-    client.user.setActivity(`le ${prefix}help`, {type:'WATCHING'})
+    console.log(`Connecté en tant que ${client.user.tag}.`)
+    client.user.setActivity(`des gens`, {type: 'WATCHING'})
 })
 
 client.on('message', async message => {
@@ -16,13 +18,18 @@ client.on('message', async message => {
     const cmd = args.shift().toLowerCase()
 
     if(cmd === 'say'){
-        message.channel.send(args.join(''))
+        let embed = new MessageEmbed()
+            .setDescription(args.join(` `))
+            .setFooter(client.user.username, client.user.avatarURL())
+            .setTimestamp(Date.now())
+        message.channel.send(embed)
         await message.delete()
     }
 
     if(cmd === 'dashboard'){
         if(!message.member.hasPermission('ADMINISTRATOR')) message.channel.send('test');
-        const embed = new MessageEmbed()
+
+        let embed = new MessageEmbed()
             .setTitle(`Accéder au tableau de bord`)
             .setDescription(`Pour accéder au tableau de bord, merci de [cliquer ici](http://localhost:3000).\nCe message va automatiquement se supprimer après 10 secondes.`)
             .setFooter(client.user.username, client.user.avatarURL())
