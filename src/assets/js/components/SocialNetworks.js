@@ -1,13 +1,14 @@
-<template>
-  <li class="social-network">
-    <a href="https://discord.gg/" target="_blank" title="Discord">
-      <i class="fas fa-discord"></i>
-    </a>
-  </li>
-</template>
+export default Vue.component('SocialNetworks', {
+    template: `<SocialNetwork name="GitHub" link="https://github.com/endermctv/EnderBot" />
+<SocialNetwork name="Discord" link="https://discord.gg/3BmKsX2" />`,
+    name: 'SocialNetworks'
+})
 
-<script>
-export default {
-  name: 'SocialNetworks'
-}
-</script>
+Vue.component('SocialNetwork', {
+    props: ['name', 'link'],
+    template: `<li class="social-network">
+    <a :href="link" target="_blank" :title="name">
+        <Icon :icon="name.toLowerCase()" />
+    </a>
+</li>`
+})

@@ -1,7 +1,0 @@
-:disabled {
-  cursor: not-allowed;
-}
-
-button:not([disabled]) {
-  cursor: pointer;
-}

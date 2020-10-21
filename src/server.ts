@@ -1,16 +1,12 @@
 require('dotenv').config()
-import {
-    Request,
-    Response
-} from 'express';
+import * as express from 'express'
 
 const app = express()
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001
 
-app.listen(PORT, () => console.log(`Le serveur est démarré sur le port ${PORT}.`))
+app.listen(PORT, () => console.log(`Le serveur est démarré à l'adresse http://localhost:${PORT}.`))
 
-app.get('/', (req: Request, res: Response) => {
-    res.type('html')
+app.get('/', (req, res) => {
     res.sendFile(`${__dirname}/views/index.html`)
 })
 

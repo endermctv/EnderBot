@@ -1,6 +1,10 @@
 @import "modules/content";
+@import "modules/fonts";
+@import "modules/forms";
 @import "modules/navbar";
 @import "modules/text";
+
+@import "libs/fontawesome.css";
 
 :root {
   --blue: #007bff;
