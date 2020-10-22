@@ -103,3 +103,7 @@ img.emoji {
     max-width: 100%;
   }
 }
+
+[type='hidden'], [hidden] {
+  display: none;
+}

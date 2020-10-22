@@ -1,9 +1,11 @@
-export default Vue.component('FooterPage', {
-    template: `<footer>
+export default Vue.component('Footer', {
+    template: `
+<footer>
     <p>{{ copyright }}</p>
     <div class="row">
-        <contact />
+        <Contact />
     </div>
-</footer>`,
-    name: 'footerpage'
+</footer>
+`,
+    name: 'Footer'
 })

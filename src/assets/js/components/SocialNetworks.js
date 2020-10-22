@@ -1,6 +1,8 @@
 export default Vue.component('SocialNetworks', {
-    template: `<SocialNetwork name="GitHub" link="https://github.com/endermctv/EnderBot" />
-<SocialNetwork name="Discord" link="https://discord.gg/3BmKsX2" />`,
+    template: `<ul class="social-networks">
+    <SocialNetwork name="GitHub" link="https://github.com/endermctv/EnderBot" />
+    <SocialNetwork name="Discord" link="https://discord.gg/3BmKsX2" />
+</ul>`,
     name: 'SocialNetworks'
 })
 

@@ -2,10 +2,12 @@ import NavbarItems from './components/NavbarItems.js'
 import Contact from './components/Contact.js'
 import Icon from './components/Icon.js'
 import Navbar from './components/Navbar.js'
-import Checkbox from './components/Checkbox.js'
 import NavbarRight from './components/NavbarRight.js'
 import SocialNetworks from './components/SocialNetworks.js'
-//import FooterPage from './components/Footer.js';
+import Footer from './components/Footer.js'
+
+import Input from './components/Forms/Input.js'
+import Checkbox from './components/Forms/Checkbox.js'
 
 twemoji.parse(document.body)
 
@@ -16,11 +18,16 @@ export default {
         NavbarRight,
         Contact,
         Icon,
-        Checkbox,
         SocialNetworks,
-        //FooterPage
+        Footer,
+
+        // Formulaires
+        Input,
+        Checkbox,
     }
 }
+
+let root = new Vue({el:'#root'})
 
 // const navbarItems = new Vue({
 //     el: 'ul.navbar-items',
