@@ -1,5 +1,4 @@
 require('dotenv').config()
-import './server'
 import './functions'
 import {
     Client,
