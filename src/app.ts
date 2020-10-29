@@ -1,5 +1,5 @@
 require('dotenv').config()
-import './server'
+import './sentry.js'
 import './functions'
 import {
     Client,
@@ -49,16 +49,6 @@ client.on('message', async message => {
         let embed = new MessageEmbed()
             .setTitle(`Pong !`)
             .setDescription(`Ma latence est de \`${Date.now() - ping} ms\`.`)
-            .setFooter(client.user.username, client.user.avatarURL())
-            .setTimestamp(Date.now())
-        message.channel.send(embed)
-        await message.delete()
-    }
-
-    if(cmd === 'website'){
-        let embed = new MessageEmbed()
-            .setTitle(`Accéder au site web`)
-            .setDescription(`⚠ Le site web est encore en développement, merci de ne pas faire de remarques à ce sujet !\n\nAccès : http://localhost:3000`)
             .setFooter(client.user.username, client.user.avatarURL())
             .setTimestamp(Date.now())
         message.channel.send(embed)
@@ -117,7 +107,6 @@ client.on('message', async message => {
                 .setDescription(argsSynthaxe)
                 .addField(`\`${prefix}bot\``, `Permet d'avoir des informations sur le bot.`, true)
                 .addField(`\`${prefix}user [utilisateur]\``, `Permet d'avoir des informations sur un utilisateur.`, true)
-                .addField(`\`${prefix}website\``, `Permet d'avoir l'url pour accéder au site (en développement).`, true)
                 .setFooter(client.user.username, client.user.avatarURL())
                 .setTimestamp(Date.now())
             message.channel.send(embed)
