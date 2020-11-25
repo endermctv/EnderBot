@@ -1,4 +1,4 @@
-const Sentry = require("@sentry/node")
+const Sentry  = require("@sentry/node")
 const Tracing = require("@sentry/tracing")
 
 Sentry.init({
@@ -12,11 +12,12 @@ const transaction = Sentry.startTransaction({
 })
 
 setTimeout(() => {
-    try{
-        console.log(null);
-    }catch(e){
+    try {
+        require('./app.ts')
+    } catch (e) {
         Sentry.captureException(e)
-    }finally{
+        console.log('Something went wrong.')
+    } finally {
         transaction.finish()
     }
 }, 99)

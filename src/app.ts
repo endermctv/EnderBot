@@ -13,11 +13,12 @@ const prefix = '/'
 
 client.on('ready', () => {
     console.log(`Connecté en tant que ${client.user.tag}.`)
-    client.user.setActivity(`${client.users.cache.size - 1} membres`, {type: 'WATCHING'})
+    client.user.setActivity(`${client.users.cache.size} membres`, {type: 'WATCHING'})
 })
 
 // client.on('guildMemberAdd', member => {
 //     const channel = member.guild.channels.cache.find(ch => ch.id === '739784345505759292')
+//     if (!channel) return
 //     channel.send(`Welcome to the server, ${member}`)
 // })
 
@@ -72,18 +73,19 @@ client.on('message', async message => {
     if(cmd === 'user'){
         let member = message.member
         if(message.mentions.members.first()) member = message.mentions.members.first()
-        var presence
-        if(presence === "online") presence = "En ligne"
-        if(presence === "idle") presence = "Inactif"
-        if(presence === "dnd") presence = "Ne pas déranger"
-        if(presence === "offline") presence = "Hors ligne"
-        let user = client.users.cache.get(member.user.id)
-        console.log(user)
+        let presence: string
+        let bot: string
+        if(member.user.presence.status === "online") presence = "En ligne"
+        if(member.user.presence.status === "idle") presence = "Inactif"
+        if(member.user.presence.status === "dnd") presence = "Ne pas déranger"
+        if(member.user.presence.status === "offline") presence = "Hors ligne"
+        if(member.user.bot === true) bot = "Oui"
+        if(member.user.bot === false) bot = "Non"
         let embed = new MessageEmbed()
             .setTitle(`Informations de ${member.user.username}`)
             .addField(`Pseudo`, member.user.username, true)
-            .addField(`Présence`, member.user.presence.status, true)
-            .addField(`Bot`, member.user.bot, true)
+            .addField(`Présence`, presence, true)
+            .addField(`Bot`, bot, true)
             .setFooter(member.user.tag, member.user.avatarURL())
             .setTimestamp(Date.now())
         message.channel.send(embed)
